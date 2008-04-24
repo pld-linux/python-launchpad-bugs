@@ -1,0 +1,26 @@
+--- python-launchpad-bugs-0.2.29/launchpadbugs/utils.py~	2008-04-24 12:05:37.768326705 +0300
++++ python-launchpad-bugs-0.2.29/launchpadbugs/utils.py	2008-04-24 12:05:39.297910527 +0300
+@@ -4,7 +4,10 @@
+ import os
+ import re
+ import subprocess
+-import apt_pkg
++try:
++    import apt_pkg
++except ImportError, e:
++    pass
+ 
+ from lpconstants import BASEURL
+ 
+@@ -19,9 +22,9 @@
+ 
+     # We're using a package
+     if path.startswith('/usr'):
+-        output = subprocess.Popen(["dpkg-query", "-W", "python-launchpad-bugs"], 
++        output = subprocess.Popen(["rpm", "-q", "python-launchpad-bugs", "--qf", "%{V}-%{R}"],
+                                    stdout=subprocess.PIPE).communicate()[0]
+-        return output.split()[1]
++        return output
+     if HAVE_BZR:
+         try:
+             bzr_revno = BzrDir.open(path).open_branch().revno()
