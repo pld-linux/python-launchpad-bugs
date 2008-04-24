@@ -1,12 +1,13 @@
 Summary:	Simple Python Interface to Bugs in Launchpad
 Name:		python-launchpad-bugs
 Version:	0.2.30
-Release:	0.1
+Release:	0.2
 License:	GPL v2/LGPL
 Group:		Development/Languages/Python
 Source0:	ftp://ftp.ubuntu.com/ubuntu/pool/main/p/python-launchpad-bugs/%{name}_%{version}.tar.gz
 # Source0-md5:	21e633b3ecb48df2171ec51a704e7362
 URL:		https://launchpad.net/python-launchpad-bugs
+Patch0:		%{name}-rpm.patch
 BuildRequires:	rpm-pythonprov
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -16,6 +17,7 @@ Classes to access bug information in Launchpad.
 
 %prep
 %setup -q -n %{name}-0.2.29
+%patch0 -p1
 
 %build
 python setup.py build
