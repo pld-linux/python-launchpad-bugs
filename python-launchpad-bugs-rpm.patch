@@ -1,26 +1,32 @@
---- python-launchpad-bugs-0.2.29/launchpadbugs/utils.py~	2008-04-24 12:05:37.768326705 +0300
-+++ python-launchpad-bugs-0.2.29/launchpadbugs/utils.py	2008-04-24 12:05:39.297910527 +0300
-@@ -4,7 +4,10 @@
+diff -burNp main/launchpadbugs/utils.py main-dud/launchpadbugs/utils.py
+--- main/launchpadbugs/utils.py	2009-01-08 12:25:24.000000000 +0100
++++ main-dud/launchpadbugs/utils.py	2009-03-14 17:16:29.580431490 +0100
+@@ -4,10 +4,14 @@
  import os
  import re
  import subprocess
 -import apt_pkg
+ import libxml2
+ import urlparse
+ 
 +try:
 +    import apt_pkg
 +except ImportError, e:
 +    pass
- 
++
+ from exceptions import LaunchpadURLError, PythonLaunchpadBugsValueError
  from lpconstants import BASEURL
  
-@@ -19,9 +22,9 @@
+@@ -40,10 +44,10 @@ def find_version_number(show_nick=False)
  
      # We're using a package
      if path.startswith('/usr'):
 -        output = subprocess.Popen(["dpkg-query", "-W", "python-launchpad-bugs"], 
-+        output = subprocess.Popen(["rpm", "-q", "python-launchpad-bugs", "--qf", "%{V}-%{R}"],
++	output = subprocess.Popen(["rpm", "-q",	"python-launchpad-bugs", "--qf", "%{V}-%{R}"],
                                     stdout=subprocess.PIPE).communicate()[0]
--        return output.split()[1]
-+        return output
-     if HAVE_BZR:
          try:
-             bzr_revno = BzrDir.open(path).open_branch().revno()
+-            return output.split()[1]
++            return output
+         except:
+             # not installed as a package
+             return "unknown"
