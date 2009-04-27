@@ -39,4 +39,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/* examples
 %dir %{py_sitescriptdir}/launchpadbugs
 %{py_sitescriptdir}/launchpadbugs/*.py[co]
-%{py_sitescriptdir}/python_launchpad_bugs-%{version}-*.egg-info
+%if "%{py_ver}" > "2.4"
+%{py_sitescriptdir}/python_launchpad_bugs-*.egg-info
+%endif
