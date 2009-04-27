@@ -24,9 +24,12 @@ python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 python setup.py install \
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
+
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %py_postclean
 
@@ -36,9 +39,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS TODO
-%doc docs/* examples
+%doc docs/*
 %dir %{py_sitescriptdir}/launchpadbugs
 %{py_sitescriptdir}/launchpadbugs/*.py[co]
+%{_examplesdir}/%{name}-%{version}
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/python_launchpad_bugs-*.egg-info
 %endif
