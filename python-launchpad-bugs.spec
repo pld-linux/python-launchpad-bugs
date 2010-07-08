@@ -1,7 +1,7 @@
 Summary:	Simple Python Interface to Bugs in Launchpad
 Name:		python-launchpad-bugs
 Version:	0.3.5
-Release:	1
+Release:	2
 License:	GPL v2/LGPL
 Group:		Development/Languages/Python
 Source0:	ftp://ftp.ubuntu.com/ubuntu/pool/main/p/python-launchpad-bugs/%{name}_%{version}.tar.gz
