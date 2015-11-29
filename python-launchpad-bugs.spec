@@ -7,6 +7,7 @@ Group:		Development/Languages/Python
 Source0:	ftp://ftp.ubuntu.com/ubuntu/pool/main/p/python-launchpad-bugs/%{name}_%{version}.tar.gz
 # Source0-md5:	2751fafafe83031dc7ac5df999fed134
 URL:		https://launchpad.net/python-launchpad-bugs
+BuildRequires:	rpmbuild(macros) >= 1.710
 Patch0:		%{name}-rpm.patch
 BuildRequires:	rpm-pythonprov
 BuildArch:	noarch
