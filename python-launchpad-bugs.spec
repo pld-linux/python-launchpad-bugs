@@ -18,7 +18,7 @@ Classes to access bug information in Launchpad.
 
 %prep
 %setup -q -n main
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %py_build
